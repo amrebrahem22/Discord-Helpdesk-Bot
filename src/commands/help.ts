@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Client, CommandInteraction, TextChannel } from "discord.js";
+import { createTicket } from "../firebase";
 
 // create command
 export const data = new SlashCommandBuilder()
@@ -29,14 +30,15 @@ export async function execute(interaction: CommandInteraction, client: Client) {
     });
 
     // get the option
-    const problemDescription = interaction.options.getString('description');
+    const problemDescription = interaction.options.getString('description')!;
     const { user } = interaction;
 
     // send thread
     thread.send(`**User** <@${user}>
     **Problem** ${problemDescription}`);
 
-    // TODO: create a ticket and store it in firebase
+    // create a ticket and store it in firebase
+    await createTicket(thread.id, problemDescription);
 
     // reply to the user
     return interaction.reply({
