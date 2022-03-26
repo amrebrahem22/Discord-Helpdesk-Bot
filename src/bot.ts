@@ -4,7 +4,7 @@ import * as commandModules from './commands';
 
 // commands object
 const commands = Object(commandModules)
-;
+
 // client instance
 export const client = new Client({ intents: ['GUILDS', 'GUILD_MESSAGES', 'DIRECT_MESSAGES'] });
 
