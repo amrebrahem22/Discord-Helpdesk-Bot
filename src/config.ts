@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const { CLIENT_ID, GUILD_ID, DISOCRD_TOKEN } = process.env;
-
+console.log(CLIENT_ID, GUILD_ID, DISOCRD_TOKEN)
 // check enviromet variables
 if (!CLIENT_ID || !GUILD_ID || !DISOCRD_TOKEN) {
     throw new Error('Missing Enviroment Variables')
