@@ -1,6 +1,10 @@
 import { Client } from 'discord.js';
 import config from './config';
+import * as commandModules from './commands';
 
+// commands object
+const commands = Object(commandModules)
+;
 // client instance
 export const client = new Client({ intents: ['GUILDS', 'GUILD_MESSAGES', 'DIRECT_MESSAGES'] });
 
@@ -13,9 +17,8 @@ client.on('interactionCreate', async interaction => {
     
     const { commandName } = interaction;
 
-    if(commandName === "ping") {
-        return interaction.reply('pong')
-    }
+    // call the execute method for each command
+    commands[commandName].execute(interaction, client);
 })
 
 // login
